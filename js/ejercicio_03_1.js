@@ -5,12 +5,6 @@ resultados:
 
 */
 
-const input1 = [
-    'Downloads',
-    'Videos',
-    'capture',
-    'mp4',
-]
 // create your function here
 const outputFileName = (list) => {
     const getExtensionPosition = list.length -1;
@@ -18,8 +12,18 @@ const outputFileName = (list) => {
     const copyList = [...list];
     copyList.pop();
 
-    return `${copyList.join('/')}.${extensionName}`;
+    const result = `${copyList.join('/')}.${extensionName}`;
+    console.log(result);
+
+    return result;
 };
+
+const input1 = [
+    'Downloads',
+    'Videos',
+    'capture',
+    'mp4',
+]
 outputFileName(input1); // 'Downloads/Videos/capture.mp4'
 
 const input2 = [
