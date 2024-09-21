@@ -28,8 +28,8 @@ const musicCatalog = () => {
    * @param {string} playlistName - The name of the new playlist.
    */
   const createPlaylist = (playlistName) => {
-    // Añade al listado playlist un objeto playlist que tiene un name y un listado de canciones. Como no sabemos las canciones irá vacío.
-    playlists = [...playlists, { name: playlistName, songs: [] }];
+    let songs = [];
+    playlists = [...playlists, { name: playlistName, songs }];
   };
 
   /**
@@ -55,7 +55,20 @@ const musicCatalog = () => {
    * @param {{ title: string, artist: string, genre: string, duration: number }} song - The song to add to the playlist.
    * @throws {Error} If the playlist is not found.
    */
-  const addSongToPlaylist = (playlistName, song) => {};
+  const addSongToPlaylist = (playlistName, song) => {
+    const ifPlaylistsExists = playlists.find( (item) => item.name === playlistName )
+    ifPlaylistsExists.songs.push({
+      title:song.title,
+      artist:song.artist,
+      genre:song.genre,
+      duration: parseInt(song.duration)
+    });
+    
+    if ( !ifPlaylistsExists ){
+      throw new Error('Playlist not found');
+    }
+    
+  };
 
   /**
    * Removes a song from a specific playlist.
